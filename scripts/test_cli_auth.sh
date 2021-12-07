@@ -71,4 +71,4 @@ fi
 
 # check storage
 balance_key=142452623821144136554572927896792266630776240502820879601186867231282346767
-scripts/test-storage.sh "$address" "$balance_key" 0x14c9
+scripts/test_storage.sh "$address" "$balance_key" 0x14c9

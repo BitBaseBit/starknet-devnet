@@ -39,7 +39,7 @@ fi
 
 # check storage after deployment
 balance_key=916907772491729262376534102982219947830828984996257231353398618781993312401
-scripts/test-storage.sh "$address" "$balance_key" 0x0
+scripts/test_storage.sh "$address" "$balance_key" 0x0
 
 # check code
 code_result_file=$(mktemp)
@@ -64,4 +64,4 @@ else
 fi
 
 # check storage after increase
-scripts/test-storage.sh "$address" "$balance_key" 0x1e
+scripts/test_storage.sh "$address" "$balance_key" 0x1e
