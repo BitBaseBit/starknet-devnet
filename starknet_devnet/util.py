@@ -37,6 +37,14 @@ def fixed_length_hex(arg: int) -> str:
     return f"0x{arg:064x}"
 
 
+def fork_name(name: str):
+    if name == "alpha":
+        return "https://alpha4.starknet.io"
+    elif name == "alpha-mainnet":
+        return "https://alpha-mainnet.starknet.io"
+    # otherwise a URL; perhaps check validity
+    return name
+
 DEFAULT_HOST = "localhost"
 DEFAULT_PORT = 5000
 def parse_args():
@@ -49,7 +57,8 @@ def parse_args():
     )
     parser.add_argument(
         "--host",
-        help=f"Specify the address to listen at; defaults to {DEFAULT_HOST} (use the address the program outputs on start)",
+        help=f"Specify the address to listen at; defaults to {DEFAULT_HOST}" +
+             f"(use the address the program outputs on start)",
         default=DEFAULT_HOST
     )
     parser.add_argument(
@@ -57,6 +66,12 @@ def parse_args():
         type=int,
         help=f"Specify the port to listen at; defaults to {DEFAULT_PORT}",
         default=DEFAULT_PORT
+    )
+    parser.add_argument(
+        "--fork", "-f",
+        type=fork_name,
+        help=f"Specify the network to fork: can be a URL (e.g. https://alpha-mainnet.starknet.io) " +
+             f"or network name (alpha or alpha-mainnet)",
     )
 
     return parser.parse_args()

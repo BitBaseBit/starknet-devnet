@@ -8,12 +8,14 @@ from starkware.starkware_utils.error_handling import StarkErrorCode, StarkExcept
 from werkzeug.datastructures import MultiDict
 from .util import TxStatus, custom_int, fixed_length_hex, parse_args
 from .starknet_wrapper import Choice, StarknetWrapper
+from .origin import Origin, NullOrigin
 import os
 
 app = Flask(__name__)
 CORS(app)
 
 starknet_wrapper = StarknetWrapper()
+origin = None
 
 @app.route("/is_alive", methods=["GET"])
 @app.route("/gateway/is_alive", methods=["GET"])
@@ -185,6 +187,8 @@ def main():
     os.environ['WERKZEUG_RUN_MAIN'] = 'true'
 
     args = parse_args()
+    global origin
+    origin = Origin(args.fork) if args.fork else NullOrigin()
     app.run(**vars(args))
 
 if __name__ == "__main__":

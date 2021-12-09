@@ -8,6 +8,8 @@ from .contract_wrapper import ContractWrapper
 from typing import List, Dict
 from starkware.starknet.definitions.error_codes import StarknetErrorCode
 from starkware.starknet.definitions.transaction_type import TransactionType
+from starkware.starknet.services.api.gateway.gateway_client import GatewayClient
+from starkware.starknet.services.api.feeder_gateway.feeder_gateway_client import FeederGatewayClient
 from enum import Enum
 
 class Choice(Enum):
